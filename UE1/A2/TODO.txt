@@ -1,0 +1,23 @@
+TODO Aufgabe 2: K-MEANS
+
+Andreas:
+- Main Framework
+- Xn berechnen: IN: Bildpfad
+		OUT: Xn (DxN Matrix)
+		Bilder einlesen, Datenpunkte Xn erstellen (für D=3 und D=5)
+
+Tomas:
+- µk, r berechnen:  IN: Xn (DxN Matrix)
+		    OUT: r (NxK Matrix)
+		    Zentren µk zufällig bestimmen und für alle Datenpunkte die Clusterzugehörigkeit r(n,k) erstellen
+- µk neu berechnen: IN: Xn (DxN Matrix), r (NxK Matrix)
+		    OUT: µk (DxK Matrix)
+		    Zentren mithilfe der Formel neu berechnen
+
+Hanna:
+- J berechnen: IN: Xn (DxN Matrix), r (NxK Matrix), µk (DxK Matrix)
+	       OUT: scalar
+	       J nach Formel berechnen und überprüfen, ob Schwellwert erreicht ist
+- Bild segmentieren: IN: r (NxK Matrix)
+		     OUT: segmentiertes Bild
+		     Pro Cluster Farbmittelwert berechnen und Clusterpunkte umfärben

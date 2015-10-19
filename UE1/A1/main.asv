@@ -30,6 +30,6 @@ for k = size(shift, 1)
 end
 %% Create RGB image
 rgb = [r,g_shifted_correct, b_shifted_correct];
-filename = strcat(strsplit(img1_r, '_'),'_RGB.jpg');
-imwrite(rgb, filename, 'jpg');
+filename = strsplit(img
+imwrite(rgb, 'rgb
 end

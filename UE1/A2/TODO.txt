@@ -5,6 +5,9 @@ Andreas:
 - Xn berechnen: IN: Bildpfad
 		OUT: Xn (DxN Matrix)
 		Bilder einlesen, Datenpunkte Xn erstellen (für D=3 und D=5)
+		
+ACHTUNG: Koordinaten des Bildes sind links oben 1,1 und steigern sich nach rechts unten: (so wie matlab matrix)
+
 
 Tomas:
 - µk, r berechnen:  IN: Xn (DxN Matrix)

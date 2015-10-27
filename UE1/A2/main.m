@@ -17,20 +17,22 @@ function [] = main(img_path, d3_or_d5, k, cluster_treshold)
 % TODO
 %% Calculate data points
 Xn = calc_Xn(img_path, d3_or_d5);
-%% K-Means iteration
-% init J
+%% Init distortion measure for iteration
 J = Inf(1);
 J_ratio = Inf(1);
-my_k = calc_rand_myk(size(Xn, 1));
-% iterate until treshold is reached
+%% K-Means iteration
 while(J_ratio > cluster_treshold)
+    % choose cluster centroids randomly
+    my_k = calc_rand_myk(size(Xn, 1));
     % assign data points to clusters
     r = calc_r(Xn, my_k);
     % recalculate cluster centroids
     my_k = calc_cluster_centroids(r, Xn);
     % calculate distortion measure
-    J_new = calc_j(Xn, r, my_k);
+    J_new = calc_j(Xn, my_k, r);
+    % calculate ratio for termination
     J_ratio = J/J_new;
+    % update distortion measure for next iteration step
     J = J_new;
 end
 %% Image segmentation

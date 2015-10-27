@@ -10,9 +10,13 @@ function [ J ] = calc_j( xn, mk, r  )
 %                       r(n,k) = 0 otherwise
 %   Output: J   ...     scalar representing the measure of distortion
 
+% Number of data points
 N = size(xn, 2);
+
+% Init sum
 J = 0;
 
+% Iterate over all data points
 for n = 1:N
     J = J + norm(xn(:,n)- mk*(r(n,:))');
 end

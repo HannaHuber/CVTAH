@@ -1,13 +1,13 @@
 %% test segmentation
 
 %% Read images
-img_path = 'C:/Users/Hanna/Documents/ComputerVision/CVTAH/UE1/A2/imgs/future.jpg'; 
+img_path = 'C:/Users/Hanna/Documents/ComputerVision/CVTAH/UE1/A2/imgs/mm.jpg'; 
 %img_path = 'C:/Users/Hanna/Documents/ComputerVision/CVTAH/UE1/A2/imgs/simple.png';
 img = imread(img_path);
 [h,w, ~] = size(img);
 %% Calculate data points
 d3_or_d5 = '3D';
-Xn = calc_Xn(img_path, d3_or_d5)';
+Xn = calc_Xn(img, d3_or_d5)';
 %% Arbitrary cluster assignment
 r = zeros(w*h,3);
 s1 = round(w*h/3);

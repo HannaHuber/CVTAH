@@ -13,11 +13,11 @@ function [] = main(img_path, d3_or_d5, k, cluster_treshold)
 % Output (saved): 
 %   clustered           ... clustered image with colorized cluster
 %                           pixels (mean color values of cluster pixels)
-%% Read images
+%% Read image data
 img = imread(img_path);
 [h,w] = size(img);
 %% Calculate data points
-Xn = calc_Xn(img_path, d3_or_d5)';
+Xn = calc_Xn(img, d3_or_d5)';
 %% Choose initial cluster centroids randomly
 my_k = calc_rand_myk(size(Xn, 1));
 %% Init distortion measure for iteration

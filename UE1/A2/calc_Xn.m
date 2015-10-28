@@ -1,13 +1,11 @@
-function [Xn] = calc_Xn(img_path, d3_or_d5 )
+function [Xn] = calc_Xn(img, d3_or_d5 )
 %% Input: 
-%   img_path  ... path to image (which should be clustered)
+%   img       ... original image (which should be clustered)
 %   3D_or_5D  ... '3D' if it should only use color information for
 %   clustering, '5D' if it should use color and spatial information for
 %   clustering
 % Output: a 3xN or 5xN matrix (Columns: r, g, b, x Coord, y Coord)
 
-%Read image
-img = imread(img_path);
 %normalize img to the range [0 1]
 img = im2double(img);
 %get the r,g,b values

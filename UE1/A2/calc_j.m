@@ -11,7 +11,8 @@ function [ J ] = calc_j( xn, mk, r  )
 %   Output: J   ...     scalar representing the measure of distortion
 
 % Squared distances between data points and centroids
-squared_distances = sum((xn - mk*r').^2, 1);
+% squared_distances = sum((xn - mk*r').^2, 1);
+squared_distances = sum((xn - mk*r).^2, 1);
 % Sum over all data points
 J = sum(squared_distances);
 

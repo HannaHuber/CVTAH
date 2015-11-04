@@ -15,21 +15,20 @@ function [] = main(img_path, d3_or_d5, k, cluster_treshold)
 %                           pixels (mean color values of cluster pixels)
 %% Read image data
 img = imread(img_path);
-[h,w] = size(img);
+[h,w,c] = size(img);
 %% Calculate data points
 Xn = calc_Xn(img, d3_or_d5)';
 %% Choose initial cluster centroids randomly
-my_k = calc_rand_myk(size(Xn, 1));
+my_k = calc_rand_myk(size(Xn, 1),k);
 %% Init distortion measure for iteration
 J = Inf(1);
 J_ratio = Inf(1);
 %% K-Means iteration
 while(J_ratio > cluster_treshold)
-    
     % assign data points to clusters
     r = calc_r(Xn, my_k);
     % recalculate cluster centroids
-    my_k = calc_cluster_centroids(r, Xn);
+    my_k = calc_cluster_centroids(r, Xn, my_k);
     % calculate distortion measure
     J_new = calc_j(Xn, my_k, r);
     % calculate ratio for termination

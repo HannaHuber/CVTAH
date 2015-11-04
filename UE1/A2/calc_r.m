@@ -11,6 +11,10 @@ function [ r ] = calc_r(Xn, my_k)
 %                       r(n,k) = 0 otherwise 
 %% Size of dimension - 3D or 5D
 dimension = size(Xn, 1);
+K = size(my_k,2);
+N = size(Xn, 2);
+% Initialize r
+r = zeros(K,N);
 %% Iteration over all datapoints
 for i = 1:size(Xn, 2)
     

@@ -15,7 +15,7 @@ function [] = main(img_path, d3_or_d5, k, cluster_treshold)
 %                           pixels (mean color values of cluster pixels)
 %% Read image data
 img = imread(img_path);
-[h,w,c] = size(img);
+[h,w,~] = size(img);
 %% Calculate data points
 Xn = calc_Xn(img, d3_or_d5)';
 %% Choose initial cluster centroids randomly

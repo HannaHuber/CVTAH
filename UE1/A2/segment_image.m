@@ -20,11 +20,11 @@ yn = zeros(3, size(xn,1));
 % Number of clusters
 K = size(r,2);
 % Get corresponding clusters
-[~,j] = find(r);
+[i,~] = find(r);
 %% Iterate over all clusters
 for k = 1:K
     % Data points belonging to cluster k
-    points = find(j==k);
+    points = find(i==k);
     cluster = xn(1:3,points);
     % Mean color value
     mean_color = mean(cluster,2);

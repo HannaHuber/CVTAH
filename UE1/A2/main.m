@@ -40,7 +40,7 @@ end
 clustered = segment_image(h, w, Xn, r);
 %% Save image
 name = strsplit(img_path, '.');
-filename = strcat(name(1), '_clustered.jpg');
+filename = strcat(name(1), '_', int2str(k), '_clustered.jpg');
 filename = strjoin(filename);
 imwrite(clustered, filename);
 %% Show result

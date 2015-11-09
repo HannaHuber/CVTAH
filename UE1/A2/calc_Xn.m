@@ -14,17 +14,17 @@ img_g = img(:,:,2);
 img_b = img(:,:,3);
 
 %create x_n array
-Xn = [reshape(img_r, [], 1) reshape(img_g, [], 1) reshape(img_b, [], 1)];
+Xn = [reshape(img_r, 1, []); reshape(img_g, 1, []); reshape(img_b, 1, [])];
 
 %if 5D calc x-coordinates and ycoordinates for each pixel and save to x_n
 if(strcmp(d3_or_d5, '5D'))
    xcoords = repmat(1:size(img,2), size(img, 1), 1);
-   xcoords = xcoords(:);
+   xcoords = xcoords(:)';
     
    ycoords = (1:size(img,1));
    ycoords = repmat(ycoords, 1, size(img,2));
-   ycoords = ycoords'; 
-   Xn = [Xn ,xcoords, ycoords];
+ 
+   Xn = [Xn; xcoords;  ycoords];
 end
 
 end

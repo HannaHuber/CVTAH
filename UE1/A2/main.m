@@ -17,7 +17,7 @@ function [] = main(img_path, d3_or_d5, k, cluster_treshold)
 img = imread(img_path);
 [h,w,~] = size(img);
 %% Calculate data points
-Xn = calc_Xn(img, d3_or_d5)';
+Xn = calc_Xn(img, d3_or_d5);
 %% Choose initial cluster centroids randomly
 my_k = calc_rand_myk(size(Xn, 1),k);
 %% Init distortion measure for iteration

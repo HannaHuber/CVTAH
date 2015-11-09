@@ -16,9 +16,9 @@ function [ I_clustered ] = segment_image( h, w, xn, r )
 %                       a cluster's color is the mean color value of all pixels belonging to that cluster
 %% Initialize
 % Vector of (segmented) image points
-yn = zeros(3, size(xn,1));
+yn = zeros(3, size(xn,2));
 % Number of clusters
-K = size(r,2);
+K = size(r,1);
 % Get corresponding clusters
 [i,~] = find(r);
 %% Iterate over all clusters

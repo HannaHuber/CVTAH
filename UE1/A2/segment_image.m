@@ -7,10 +7,10 @@ function [ I_clustered ] = segment_image( h, w, xn, r )
 %           xn  ...     DxN Matrix of N D-dimensional datapoints
 %                       3D : color values only
 %                       5D : color and position values
-%           r   ...     NxK matrix assigning each datapoint a particular
+%           r   ...     KxN matrix assigning each datapoint a particular
 %                       cluster:
-%                       r(n,k) = 1 if xn belongs to cluster k
-%                       r(n,k) = 0 otherwise 
+%                       r(k,n) = 1 if xn belongs to cluster k
+%                       r(k,n) = 0 otherwise 
 %   Output: 
 %   I_clustered ...     segemnted image with colorized clusters; 
 %                       a cluster's color is the mean color value of all pixels belonging to that cluster

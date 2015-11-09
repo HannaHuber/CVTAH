@@ -20,9 +20,17 @@ Xn = [reshape(img_r, 1, []); reshape(img_g, 1, []); reshape(img_b, 1, [])];
 if(strcmp(d3_or_d5, '5D'))
    xcoords = repmat(1:size(img,2), size(img, 1), 1);
    xcoords = xcoords(:)';
-    
+   
+   %normalize to 0 1
+   range = max(xcoords) - min(xcoords);
+   xcoords = (xcoords - min(xcoords)) / range;
+   
    ycoords = (1:size(img,1));
    ycoords = repmat(ycoords, 1, size(img,2));
+   
+   %normalize to 0 1
+   range = max(ycoords) - min(ycoords);
+   ycoords = (ycoords - min(ycoords)) / range;
  
    Xn = [Xn; xcoords;  ycoords];
 end

@@ -18,6 +18,18 @@ r = zeros(K,N);
 %% Iteration over all datapoints
 for i = 1:size(Xn, 2)
     
+    x = Xn(:,1);
+    duplicateX = repmat(x,[1 dimension]);
+    
+    diff = my_k - duplicateX;
+    diff = abs(diff);
+    
+    sumDiff = sum(diff);
+    
+    minimum = min(sumDiff);
+    
+    
+    
     % Save the smallest distance to cluster and the number of cluster
     smallest_distance_to_cluster = Inf(1);
     smallest_distance = Inf(1);

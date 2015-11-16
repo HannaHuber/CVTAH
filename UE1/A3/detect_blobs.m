@@ -1,4 +1,4 @@
-function [ blob_centers, blob_levels ] = detect_blobs( scale_space )
+function [ localMaxima ] = detect_blobs( scale_space )
 %DETECT_BLOBS Detects blobs in the 3D scale space by performing non-maximum
 %suppression
 % Input:
@@ -25,5 +25,23 @@ function [ blob_centers, blob_levels ] = detect_blobs( scale_space )
 % and maxima are treated likewise, it is more convenient to take the absolute responses and
 % search for local maxima only.
 
+%# s = 3D array
+msk = true(3,3,3);
+msk(2,2,2) = false;
+%# assign, to every voxel, the maximum of its neighbors
+s_dil = imdilate(scale_space,msk);
+M = scale_space > s_dil; %# M is 1 wherever a voxel's value is greater than its neighbors
+
+localMaxima = [0,0,0];
+
+%[x,y,levels] = ind2sub(size(M),find(M));
+%localMaxima = [x,y,levels];
+for blob_level = 1:10
+   [blob_centers_x,blob_centers_y] = find(M(:,:,blob_level));
+   maximaSize = size(blob_centers_x, 1);
+   localMaxima = [localMaxima;[blob_centers_x, blob_centers_y, repmat(blob_level, maximaSize,1)]];
+end
+
+localMaxima = localMaxima(2:end,:);
 end
 

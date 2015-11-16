@@ -25,7 +25,8 @@ function [ localMaxima ] = detect_blobs( scale_space )
 % and maxima are treated likewise, it is more convenient to take the absolute responses and
 % search for local maxima only.
 
-threshold = 10;
+threshold = 50;
+[h,w,levels] = size(scale_space);
 
 %# s = 3D array
 msk = ones(3,3,3);
@@ -37,17 +38,23 @@ M2 = (scale_space > threshold);
 
 M = M1 & M2;
 
+%set first and last row and column to zero (Randbehandlung)
+% M(1,:,:) = 0;
+% M(h,:,:) = 0;
+% M(:,1,:) = 0;
+% M(:,w,:) = 0;
 
 localMaxima = [0,0,0];
 
 %[x,y,levels] = ind2sub(size(M),find(M));
 %localMaxima = [x,y,levels];
-for blob_level = 1:10
+for blob_level = 2:levels-1
    [blob_centers_x,blob_centers_y] = find(M(:,:,blob_level));
    maximaSize = size(blob_centers_x, 1);
    localMaxima = [localMaxima;[blob_centers_x, blob_centers_y, repmat(blob_level, maximaSize,1)]];
 end
 
 localMaxima = localMaxima(2:end,:);
+
 end
 

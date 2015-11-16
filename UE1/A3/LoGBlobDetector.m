@@ -32,7 +32,7 @@ N = size(localMaxima, 1);
 blob_scales = repmat(sigma0, N,1).*repmat(k,N,1).^(localMaxima(:,3)-ones(N,1));
 %% Mark blobs in image
 % circle radius r = sigma * sqrt(2)
-show_all_circles(img_original, localMaxima(:,1),localMaxima(:,2), blob_scales*sqrt(2));
+show_all_circles(img_original, localMaxima(:,2),localMaxima(:,1), blob_scales*sqrt(2));
 %% Save image with detected blobs
 % name = strsplit(img_path, '.');
 % filename = strcat(name(1), '_blobs.jpg');

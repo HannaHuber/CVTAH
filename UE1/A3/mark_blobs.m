@@ -5,10 +5,13 @@ function [ img_blobs ] = mark_blobs( img, blob_centers, blob_scales)
 %   blob_centers       ... Nx2 matrix of N detected blob coords, where 
 %                          blob_centers(i,:)=(xi,yi) 
 %                          are the pixel coordinates of the ith blob
+%   blob_scales        ... Nx1 vector of sigma values corresponding to the
+%                          scale where the respective blob was detected:
+%                          blob_scales(i) = sigma_i
 % Output:
 %   img_blobs          ... HxW matrix of image showing the detected blobs
 
-%% TODO (see asiignment)
+%% TODO (see assignment)
 % Visualization of results: You can use the function show_all_circles to visualize the
 % detected blobs. The function takes the circle centers and corresponding radii and draws
 % the circles in an image. However, to choose the correct radii, the relationship between the

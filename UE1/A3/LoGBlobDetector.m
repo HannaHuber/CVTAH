@@ -20,17 +20,19 @@ for l = 1:levels
     % Create LoG filter for current scale
     log_filter = calc_LoG(sigma);
     % Saved absolute response (=convolved image) for current scale
-    scale_space(:,:,l) = calc_response(img, log_filter);
+    scale_space(:,:,l) = imfilter(img, log_filter, 'replicate', 'same');
     % Calculate sigma for next scale 
     sigma = sigma*k;
 end
 %% Detect blobs
 [blob_centers, blob_levels] = detect_blobs(scale_space);
-%% Calculate corresponding scale (sigma) from corresponding scale space level
+%% Calculate corresponding scale (sigma) from scale space level
+% sigma_i = sigma0 * k^(l-1), i=1..levels
 N = size(blob_centers, 1);
-blob_scales = repmat(sigma, N,1).*repmat(k,N,1).^(blob_levels-ones(N,1));
+blob_scales = repmat(sigma0, N,1).*repmat(k,N,1).^(blob_levels-ones(N,1));
 %% Mark blobs in image
-img_blobs = mark_blobs(img, blob_centers, blob_scales);
+% circle radius r = sigma * sqrt(2)
+img_blobs = show_all_circles(img, blob_centers(:,1),blob_centers(:,2), blob_scales*sqrt(2));
 %% Save image with detected blobs
 name = strsplit(img_path, '.');
 filename = strcat(name(1), '_blobs.jpg');

@@ -1,13 +1,15 @@
-function [ blobs ] = detect_blobs( scale_space )
+function [ blob_centers, blob_levels ] = detect_blobs( scale_space )
 %DETECT_BLOBS Detects blobs in the 3D scale space by performing non-maximum
 %suppression
 % Input:
-%   scale_space ... HxWxL matrix representing the scale space (=absolute
-%                   response to a scale-normalized LoG filter) of a HxW 
-%                   image with L scale levels
+%   scale_space         ... HxWxL matrix representing the scale space (=absolute
+%                           response to a scale-normalized LoG filter) of a HxW 
+%                           image with L scale levels
 % Output:
-%   blobs       ... Nx2 matrix of N detected blobs, where blobs(i,:)=(xi,yi) 
-%                   are the pixel coordinates of the ith blob
+%   blob_centers        ... Nx2 matrix of N detected blob coords, where 
+%                           blob_centers(i,:)=(xi,yi) are the pixel coordinates of the ith blob
+%   blob_levels         ... Nx1 vector containing the scale space level
+%                           where the corresponding blob was detected
 
 %% TODO (see assignment)
 

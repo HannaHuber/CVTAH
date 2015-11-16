@@ -8,8 +8,9 @@ function [] = LoGBlobDetector( img_path, sigma0, k, levels)
 %   levels         ... number of scale space levels
 % Output (saved):
 %   img_blobs ... image including detected blobs
-%% Read image
+%% Read image and map to range [0,1]
 img = imread(img_path);
+img = im2double(img);
 %% Iterate over scale space levels
 % Init scale space
 [h,w] = size(img);
@@ -24,9 +25,12 @@ for l = 1:levels
     sigma = sigma*k;
 end
 %% Detect blobs
-blobs = detect_blobs(scale_space);
+[blob_centers, blob_levels] = detect_blobs(scale_space);
+%% Calculate corresponding scale (sigma) from corresponding scale space level
+N = size(blob_centers, 1);
+blob_scales = repmat(sigma, N,1).*repmat(k,N,1).^(blob_levels-ones(N,1));
 %% Mark blobs in image
-img_blobs = mark_blobs(img, blobs);
+img_blobs = mark_blobs(img, blob_centers, blob_scales);
 %% Save image with detected blobs
 name = strsplit(img_path, '.');
 filename = strcat(name(1), '_blobs.jpg');

@@ -1,11 +1,12 @@
-function [ img_blobs ] = mark_blobs( img, blobs)
+function [ img_blobs ] = mark_blobs( img, blob_centers, blob_scales)
 %MARK_BLOBS Visualizes detected blobs in the corresponding image
 % Input:
-%   img         ... HxW matrix of original image
-%   blobs       ... Nx2 matrix of N detected blobs, where blobs(i,:)=(xi,yi) 
-%                   are the pixel coordinates of the ith blob
+%   img                ... HxW matrix of original image
+%   blob_centers       ... Nx2 matrix of N detected blob coords, where 
+%                          blob_centers(i,:)=(xi,yi) 
+%                          are the pixel coordinates of the ith blob
 % Output:
-%   img_blobs   ... HxW matrix of image showing the detected blobs
+%   img_blobs          ... HxW matrix of image showing the detected blobs
 
 %% TODO (see asiignment)
 % Visualization of results: You can use the function show_all_circles to visualize the
@@ -19,6 +20,8 @@ function [ img_blobs ] = mark_blobs( img, blobs)
 % occurs at sigma = r/sqrt(2) (the proof is left as an
 % exercise for interested students). As a consequence, you have to multiply the detected
 % scale by sqrt(2) to get the correct radii of the circles to be drawn.
+
+
 
 end
 

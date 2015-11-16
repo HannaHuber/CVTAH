@@ -18,51 +18,27 @@ r = zeros(K,N);
 %% Iteration over all datapoints
 for i = 1:size(Xn, 2)
     
+    % Get actual value
     x = Xn(:,i);
-    %duplicateX = repmat(x,[1 K]);
+
+    % Duplicate x
     duplicateX = repelem(x,1,K);
     
+    % Substract x from clusters
     diff = my_k - duplicateX;
     diff = abs(diff);
     
+    % Sum up differences
     sumDiff = sum(diff);
     
+    % Get the smallest difference
     minimum = min(sumDiff);
     
+    % Get the index of the smallest difference
     index = find(sumDiff == minimum);
     
+    % Put 1 to cell of cluster of the smallest difference 
     r(index,i) = 1;
-    
-
-
-%     % Save the smallest distance to cluster and the number of cluster
-%     smallest_distance_to_cluster = Inf(1);
-%     smallest_distance = Inf(1);
-%     
-%     % Iteration over all cluster
-%     for j = 1:size(my_k, 2)
-%         actual_distance = 0;
-%         % Iteration over all dimensions and count distance
-%         for d = 1:dimension
-%             actual_distance = actual_distance + ((Xn(d,i) - my_k(d,j))^2);
-%         end
-%         
-%         % If distance of actual cluster is smaller, update the smallest
-%         % distance and the cluster number
-%         if(actual_distance < smallest_distance)
-%             smallest_distance = actual_distance;
-%             smallest_distance_to_cluster = j;
-%         end
-%     end
-%     
-%     % Create r matrix. The smallest cluster gets value 1 and all other 0
-%     for j = 1:size(my_k, 2)
-%         if(smallest_distance_to_cluster == j)
-%             r(j,i) = 1;
-%         else
-%             r(j,i) = 0;
-%         end
-%     end
 end
 end
 

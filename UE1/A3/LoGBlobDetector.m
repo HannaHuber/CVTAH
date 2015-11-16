@@ -19,8 +19,8 @@ sigma = sigma0;
 for l = 1:levels
     % Create LoG filter for current scale
     log_filter = calc_LoG(sigma);
-    % Saved absolute response (=convolved image) for current scale
-    scale_space(:,:,l) = imfilter(img, log_filter, 'replicate', 'same');
+    % Save absolute response for current scale
+    scale_space(:,:,l) = abs(imfilter(img, log_filter, 'replicate', 'same'));
     % Calculate sigma for next scale 
     sigma = sigma*k;
 end

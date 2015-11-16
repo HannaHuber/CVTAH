@@ -19,6 +19,6 @@ function [ scale_response ] = calc_response( img, LoG_filter )
 % 'same' and 'replicate' for convolution. You can read up the effects of these
 % parameters in the function reference.
 
-
+scale_response = imfilter(img, LoG_filter, 'replicate', 'same');
 end
 

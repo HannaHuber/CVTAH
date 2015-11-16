@@ -1,4 +1,4 @@
-function [ LoG_filter ] = calc_LoG( sigma )
+function [ LoG_filter ] = calc_LoG(img, sigma )
 %CALC_LOG Calculates the Laplacian of Gaussian (LoG) filter using a
 %specified standard deviation
 % Input:
@@ -6,8 +6,19 @@ function [ LoG_filter ] = calc_LoG( sigma )
 % Output:
 %   LoG_filter  ... scale normalized LoG filter
 
-%% TODO (see assignment)
-% Build a scale-normalized Laplacian of Gaussian filter with current scale .
+%% Build a scale-normalized Laplacian of Gaussian filter with current scale.
+% count filter size
+size = 2 * floor(3 * sigma) + 1;
+filterSize = [size size];
+
+% Create filter
+filter = fspecial('log', filterSize, sigma);
+
+% Scale-normalizing the filter
+filter =  sigma^2 * filter;
+
+% Filter image
+LoG_filter = imfilter(img,filter);
 
 %% Hint (see assignment)
 % Filter creation: use the fspecial function with parameter 'log' to create the LoG

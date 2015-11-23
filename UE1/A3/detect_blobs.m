@@ -25,7 +25,7 @@ function [ localMaxima ] = detect_blobs( scale_space )
 % and maxima are treated likewise, it is more convenient to take the absolute responses and
 % search for local maxima only.
 
-threshold = 50;
+threshold = 30;
 [h,w,levels] = size(scale_space);
 
 %# s = 3D array

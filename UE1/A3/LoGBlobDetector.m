@@ -10,7 +10,11 @@ function [] = LoGBlobDetector( img_path, sigma0, k, levels)
 %   img_blobs ... image including detected blobs
 %% Read image and map to range [0,1]
 img_original = imread(img_path);
+if size(img_original, 3) > 1
+    img_original = rgb2gray(img_original);
+end
 img = double(img_original);
+
 %% Iterate over scale space levels
 % Init scale space
 [h,w] = size(img);

@@ -13,3 +13,15 @@ levels = 10;
 img_path = './imgs/butterfly.jpg';
 %% Run blob detector
 LoGBlobDetector(img_path, sigma0, k, levels);
+%% Select image
+img_path = './imgs/butterfly_half.jpg';
+%% Run blob detector
+LoGBlobDetector(img_path, sigma0, k, levels);
+%% Select image
+img_path = './imgs/blumen.jpg';
+%% Run blob detector
+LoGBlobDetector(img_path, sigma0, k, levels);
+%% Select image
+img_path = './imgs/blumen_half.jpg';
+%% Run blob detector
+LoGBlobDetector(img_path, sigma0, k, levels);

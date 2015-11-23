@@ -46,4 +46,3 @@ imshow(rgb);
 imwrite(rgb, filename);
 end
 
-

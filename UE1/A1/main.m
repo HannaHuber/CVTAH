@@ -1,6 +1,5 @@
 %% Assignment I/1: Colorizing Images
 % Authors: Tomas Musil, Andreas Wittmann, Hanna Huber
-<<<<<<< Updated upstream
 function [] = main(img_r, img_g, img_b)
 % Input: img1, img2, img3  ... path to color channel images
 % Output (saved): rgb      ... aligned RGB  image
@@ -46,6 +45,5 @@ filename = strjoin(filename);
 imshow(rgb);
 imwrite(rgb, filename);
 end
-=======
-%%
->>>>>>> Stashed changes
+
+

@@ -1,0 +1,1 @@
+To run the blob detection for different images, run the file runBlobDetector.m .

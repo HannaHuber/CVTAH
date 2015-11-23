@@ -38,22 +38,19 @@ M2 = (scale_space > threshold);
 
 M = M1 & M2;
 
-%set first and last row and column to zero (Randbehandlung)
-% M(1,:,:) = 0;
-% M(h,:,:) = 0;
-% M(:,1,:) = 0;
-% M(:,w,:) = 0;
-
 localMaxima = [0,0,0];
 
-%[x,y,levels] = ind2sub(size(M),find(M));
-%localMaxima = [x,y,levels];
+% Iterate over inner levels of scale space
 for blob_level = 2:levels-1
+   % Find blob coords at current level
    [blob_centers_x,blob_centers_y] = find(M(:,:,blob_level));
+   % Number of detected blobs at current level
    maximaSize = size(blob_centers_x, 1);
+   % Append blobs to matrix of detected blobs
    localMaxima = [localMaxima;[blob_centers_x, blob_centers_y, repmat(blob_level, maximaSize,1)]];
 end
 
+% Remove init row ([0 0 0])
 localMaxima = localMaxima(2:end,:);
 
 end

@@ -10,7 +10,6 @@ function [ r ] = calc_r(Xn, my_k)
 %                       r(n,k) = 1 if Xn belongs to cluster k
 %                       r(n,k) = 0 otherwise 
 %% Size of dimension - 3D or 5D
-dimension = size(Xn, 1);
 K = size(my_k,2);
 N = size(Xn, 2);
 % Initialize r

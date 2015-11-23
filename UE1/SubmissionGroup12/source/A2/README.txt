@@ -1,0 +1,1 @@
+To run the K-means algorithm for different cluster numbers, run the file run_kmeans.m and change the image path.

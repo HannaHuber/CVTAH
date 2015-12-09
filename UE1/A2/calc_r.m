@@ -25,7 +25,7 @@ for i = 1:size(Xn, 2)
     
     % Substract x from clusters
     diff = my_k - duplicateX;
-    diff = abs(diff);
+    diff = diff.^2;
     
     % Sum up differences
     sumDiff = sum(diff);

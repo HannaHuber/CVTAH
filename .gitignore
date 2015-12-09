@@ -18,3 +18,5 @@ slprj/
 *.zip
 
 *.db
+
+/UE2_ASS4/vlfeat-0.9.20

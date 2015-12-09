@@ -36,16 +36,20 @@ for p=1:4
 end
 %% Calculate transformations to reference image (H)
 % reference image = img3
-H13 = H{2}.tdata.Tv* H{1}.tdata.T;
-H23 = H{2}.tdata.T;
-H43 = H{3}.tdata.Tinv;
-H53 = H{3}.tdata.Tinv * H{4}.tdata.Tinv;
+Href = cell(1,4);
+Href{1} = H{2}.tdata.Tv* H{1}.tdata.T;
+Href{2} = H{2}.tdata.T;
+Href{3} = H{3}.tdata.Tinv;
+Href{4} = H{3}.tdata.Tinv * H{4}.tdata.Tinv;
 %% Calculate mosaic size (H)
 % TODO C.3
+
 %% Transform images (H)
-% TODO C.4
+img_transformed = transformImages(Href, img);
 %% Blend images (T)
 % TODO C.5
+mosaic = blendImages(img_transformed{1},img_transformed{2},img_transformed{3},img_transformed{4},img_transformed{5}, mosaic_size);
+
 
 
 

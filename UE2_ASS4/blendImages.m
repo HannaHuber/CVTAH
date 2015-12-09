@@ -1,4 +1,4 @@
-function mosaic = blendImages(I1,I2,I3,I4,I5)
+function mosaic = blendImages(I1,I2,I3,I4,I5, mosaic_size)
 % TODO
 % Given all transformed images, the final step is to blend overlapping pixel color values in
 % such a way as to avoid seams. One simple way to do this, called feathering, is to use

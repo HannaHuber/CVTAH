@@ -39,7 +39,7 @@ for p=1:4
     H = cell(1,4);
     H{p} = calcHomography(F{p}, F{p+1}, matching_indices);
 end
-%% Calculate transformations to reference image (=img3)(H)
+%% Calculate transformations relative to reference image (=img3)(H)
 H_rel = calcRelativeTransformation(H);
 
 %% Calculate mosaic size (H)

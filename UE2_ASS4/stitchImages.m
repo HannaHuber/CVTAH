@@ -19,7 +19,7 @@ for i = 1:5
     %% Create SIFT descriptors 
     % D...128xN matrix for N keypoints
     [F{i},D{i}] = vl_sift(img_single);
-    F{i}(:) = round(F{i}(:));
+    % F{i}(:) = round(F{i}(:));
 end
 
 matching_indices = cell(1,4);

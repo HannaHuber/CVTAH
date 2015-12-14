@@ -31,7 +31,7 @@ points1 = points1 * img1_ratio;
 points2 = points2 * img2_ratio;
 points1 = [points1(:,2) points1(:,1)];
 points2 = [points2(:,2) points2(:,1)];
-match_img = zeros(height, size(img1,2)+size(img2,2), size(img2,3));
+match_img = uint8(zeros(height, size(img1,2)+size(img2,2), size(img2,3)));
 match_img(1:size(img1,1),1:size(img1,2),:) = img1;
 match_img(1:size(img2,1),size(img1,2)+1:end,:) = img2;
 imshow(match_img);

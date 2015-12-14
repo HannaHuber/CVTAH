@@ -4,19 +4,22 @@ function [mosaic] = stitchImages(impath)
 % impath... array of images paths
 %% Init
 img = cell(1,5); 
-F = cell(1,5);
-D = cell(1,5);
+%the SIFT keypoints of the image I.
+%   [X;Y;S;TH], where X,Y is the (fractional) center of the frame,
+%   S is the scale and TH is the orientation (in radians).
+F = cell(1,5); 
+D = cell(1,5); %is the descriptor of the corresponding keypoint in F. (128dim vector)
 
 for i = 1:5
     %% Read and convert image
-    img{i} = imread(impath(i));
+    img{i} = imread(char(impath(i)));
     img_gray = rgb2gray(img{i});
     img_single = im2single(img_gray);
 
     %% Create SIFT descriptors 
     % D...128xN matrix for N keypoints
     [F{i},D{i}] = vl_sift(img_single);
-
+    F{i}(:) = round(F{i}(:));
 end
 
 matching_indices = cell(1,4);
@@ -28,8 +31,12 @@ for p=1:4
     % TODO find corresponding indices: 
     % matching_indices{p}=
     % TODO plot matches
+    points_p1 = F{p}(1:2,matches(1,:))';
+    points_p2 = F{p+1}(1:2,matches(2,:))';
+    
+    match_plot(img{p}, img{p+1}, points_p1, points_p2);
     %% Calculate homography for neighboring images (A)
-    H = cell{1,4};
+    H = cell(1,4);
     H{p} = calcHomography(F{p}, F{p+1}, matching_indices);
 end
 %% Calculate transformations to reference image (H)

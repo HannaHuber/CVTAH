@@ -28,16 +28,14 @@ matching_indices = cell(1,4);
 for p=1:4
     %% Match keypoints for neighboring images (A)
     [matches] = vl_ubcmatch(D{p},D{p+1});
-    % TODO find corresponding indices: 
-    % matching_indices{p}=
-    % TODO plot matches
+    % get coords of matched keypoints
     points_p1 = F{p}(1:2,matches(1,:))';
     points_p2 = F{p+1}(1:2,matches(2,:))';
-    
-    match_plot(img{p}, img{p+1}, points_p1, points_p2);
+    % plot matches
+    %match_plot(img{p}, img{p+1}, points_p1, points_p2);
     %% Calculate homography for neighboring images (A)
     H = cell(1,4);
-    H{p} = calcHomography(F{p}, F{p+1}, matching_indices);
+    H{p} = calcHomography(F{p}, F{p+1}, matches);
 end
 %% Calculate transformations relative to reference image (=img3)(H)
 H_rel = calcRelativeTransformation(H);

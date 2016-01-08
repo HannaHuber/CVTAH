@@ -3,19 +3,22 @@
 function [mosaic] = stitchImages(impath)
 % impath... array of images paths
 %% Init
-img = cell(1,5); 
+img_rgba = cell(1,5); 
 %the SIFT keypoints of the image I.
 %   [X;Y;S;TH], where X,Y is the (fractional) center of the frame,
 %   S is the scale and TH is the orientation (in radians).
 F = cell(1,5); 
 D = cell(1,5); %is the descriptor of the corresponding keypoint in F. (128dim vector)
-
+%% Iterate over all images
 for i = 1:5
     %% Read and convert image
-    img{i} = imread(char(impath(i)));
-    img_gray = rgb2gray(img{i});
+    img = imread(char(impath(i)));
+    img_gray = rgb2gray(img);
     img_single = im2single(img_gray);
-
+    %% Add alpha channel
+    alpha_channel = calcAlpha(size(img,1), size(img,2));
+    img_rgba{i} = cat(3,img,alpha_channel);
+    
     %% Create SIFT descriptors 
     % D...128xN matrix for N keypoints
     [F{i},D{i}] = vl_sift(img_single);
@@ -41,13 +44,13 @@ end
 H_rel = calcRelativeTransformation(H);
 
 %% Calculate mosaic size (H)
-[h, w] = calcRange(img, H_rel);
+[h, w] = calcRange(img_rgba, H_rel);
 
 %% Transform images (H)
 img_transformed = cell(1,5);
 for i=1:5
     H=maketform('projective',H_rel{i});
-    img_transformed{i} = imtransform(img{i},H,'XData',w, 'YData',h);
+    img_transformed{i} = imtransform(img_rgba{i},H,'XData',w, 'YData',h);
 end
 %% Blend images (T)
 % TODO C.5

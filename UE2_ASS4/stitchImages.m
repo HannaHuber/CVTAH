@@ -23,6 +23,7 @@ for i = 1:5
 end
 
 matching_indices = cell(1,4);
+H = cell(1,4);
 % for each pair img(i),img(i+1) matching_indices(i) is a Nx2 matrix for N
 % matches
 for p=1:4
@@ -33,8 +34,7 @@ for p=1:4
     points_p2 = F{p+1}(1:2,matches(2,:))';
     % plot matches
     %match_plot(img{p}, img{p+1}, points_p1, points_p2);
-    %% Calculate homography for neighboring images (A)
-    H = cell(1,4);
+    %% Calculate homography for neighboring images (A)    
     H{p} = calcHomography(F{p}, F{p+1}, matches);
 end
 %% Calculate transformations relative to reference image (=img3)(H)
@@ -46,7 +46,8 @@ H_rel = calcRelativeTransformation(H);
 %% Transform images (H)
 img_transformed = cell(1,5);
 for i=1:5
-    img_transformed{i} = imtransform(img{i},H_rel{i},'XData',[1 h], 'YData',[1 w]);
+    H=maketform('projective',H_rel{i});
+    img_transformed{i} = imtransform(img{i},H,'XData',w, 'YData',h);
 end
 %% Blend images (T)
 % TODO C.5

@@ -9,7 +9,7 @@ H_rel{1} = H{2}.tdata.T * H{1}.tdata.T;
 % From img2 to img3
 H_rel{2} = H{2}.tdata.T;
 % img3 = reference image --> transformation = identity
-H_rel{3} = eye(2);
+H_rel{3} = eye(3);
 % From img4 to img3
 H_rel{4} = H{3}.tdata.Tinv;
 % From img5 to img3

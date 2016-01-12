@@ -4,11 +4,12 @@ function [mosaic] = stitchImages(impath)
 % impath... array of images paths
 %% Init
 img_rgba = cell(1,5); 
-%the SIFT keypoints of the image I.
+% SIFT keypoints of the image I. 
 %   [X;Y;S;TH], where X,Y is the (fractional) center of the frame,
 %   S is the scale and TH is the orientation (in radians).
 F = cell(1,5); 
-D = cell(1,5); %is the descriptor of the corresponding keypoint in F. (128dim vector)
+% SIFT descriptor of the corresponding keypoint in F. (128dim vector)
+D = cell(1,5); 
 %% Iterate over all images
 for i = 1:5
     %% Read and convert image

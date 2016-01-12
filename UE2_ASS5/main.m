@@ -1,5 +1,7 @@
 %% Performs scene recognition (UE2 - Ass5)
 
+%TODO: Hanna
+
 % Init
 folder = './ass5_data/train';
 num_clusters = 50;

@@ -27,6 +27,7 @@ end
 
 matching_indices = cell(1,4);
 H = cell(1,4);
+I = cell(1,4);
 % for each pair img(i),img(i+1) matching_indices(i) is a Nx2 matrix for N
 % matches
 for p=1:4
@@ -38,7 +39,7 @@ for p=1:4
     % plot matches
     %match_plot(img{p}, img{p+1}, points_p1, points_p2);
     %% Calculate homography for neighboring images (A)    
-    H{p} = calcHomography(F{p}, F{p+1}, matches);
+    [H{p}, I{p}] = calcHomography(F{p}, F{p+1}, matches);
 end
 %% Calculate transformations relative to reference image (=img3)(H)
 H_rel = calcRelativeTransformation(H);

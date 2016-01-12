@@ -40,7 +40,7 @@ for p=1:4
     % plot matches
     %match_plot(img{p}, img{p+1}, points_p1, points_p2);
     %% Calculate homography for neighboring images (A)    
-    [H{p}, I{p}] = calcHomography(F{p}, F{p+1}, matches);
+    [H{p}, ~] = calcHomography(F{p}, F{p+1}, matches);
 end
 %% Calculate transformations relative to reference image (=img3)(H)
 H_rel = calcRelativeTransformation(H);

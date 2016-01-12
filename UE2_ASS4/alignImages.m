@@ -15,9 +15,8 @@ img2 = imread(impath2);
 match_plot(img1, img2, F1(1:2,matches(1,:))', F2(1:2,matches(2,:))');
 
 %% Calculate image transformation
-H = calcHomography(F1, F2, matches);
-% TODO: [H, I] = calcHomography(F1, F2, matches);
-%       match_plot(img1, img2, F1(I)', F2(I)');
+[H, I] = calcHomography(F1, F2, matches);
+match_plot(img1, img2, I(:,1:2), I(:,3:4));
 
 %% Transform first image
 img1_transformed = imtransform(img1,H,'XData',[ 1 size(img2,2)], 'YData',[ 1 size(img2,1)]);

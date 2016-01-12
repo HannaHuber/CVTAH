@@ -1,12 +1,10 @@
 function [h,w] = calcRange(img, H_rel)
 
 %% Init cell of transformed corners
-tcorners = zeros(4,2,5);
+n = size(img,2);
+tcorners = zeros(4,2,n);
 %% Calculate transformed corners
-% Reference image: corners = tranformed corners
-tcorners(:,:,3) = [ [1 1]; [size(img{3},2) 1]; [size(img{3},2) size(img{3},1)]; [1 size(img{3},1)]  ];
-% Other images
-for i = [1,2,4,5]
+for i = 1:n
     % Current corner coords (x=columns, y=rows)
     % Each row in the corner matrix corresponds to the homogeneous coords
     % of one corner: [x y 1]

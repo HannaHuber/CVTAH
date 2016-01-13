@@ -1,3 +1,5 @@
+%TODO: Hanna
+
 function C = BuildVocabulary( folder, num_clusters )
 %BUILDVOCABULARY Builds vocabulary of visual words for scene recognition
 %   Input:

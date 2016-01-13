@@ -8,11 +8,11 @@ impath(4) = cellstr('ass4_data/campus4.jpg');
 impath(5) = cellstr('ass4_data/campus5.jpg');
 
 %% A - SIFT Interest Point Detection
-detectInterestPoints(impath{1}, true);
+%detectInterestPoints(impath{4}, true);
 
 %% B - Interest Point Matching and Image Registration
 % Align two consecutive images
-alignImages(impath{1}, impath{2});
+%alignImages(impath{1}, impath{2});
 % Repeat with transformed second image
 alignImages(impath{1}, 'ass4_data/campus2_rot.jpg');
 

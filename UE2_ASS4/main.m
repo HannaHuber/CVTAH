@@ -1,4 +1,6 @@
 %% MAIN UE2 - Ass 4
+close all;
+
 %% Init
 impath = cell(5,1);
 impath(1) = cellstr('ass4_data/campus1.jpg');
@@ -17,7 +19,10 @@ alignImages(impath{1}, impath{2});
 alignImages(impath{1}, 'ass4_data/campus2_rot.jpg');
 
 %% C - Image Stitching
-mosaic = stitchImages(impath);
+% You can choose between feathering and no_feathering
+mosaic = stitchImages(impath, 'feathering');
+% Visualize stitched image
+imshow(mosaic,[]);
 
 
 

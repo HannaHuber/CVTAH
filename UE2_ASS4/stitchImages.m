@@ -1,6 +1,6 @@
 %% Assignment 4: Image Stitching
 
-function [mosaic] = stitchImages(impath)
+function [mosaic] = stitchImages(impath, mosaicType)
 % impath... array of images paths
 %% Init
 img_rgba = cell(1,5); 
@@ -52,12 +52,11 @@ H_rel = calcRelativeTransformation(H);
 img_transformed = cell(1,5);
 for i=1:5
     H=maketform('projective',H_rel{i});
-    img_transformed{i} = imtransform(img_rgba{i},H,'XData',w, 'YData',h);
+    img_transformed{i} = imtransform(img_rgba{i},H,'nearest','XData',w, 'YData',h);
 end
 %% Blend images (T)
 % TODO C.5
-mosaic = blendImages(img_transformed{1},img_transformed{2},img_transformed{3},img_transformed{4},img_transformed{5});
-
+mosaic = blendImages(img_transformed{1},img_transformed{2},img_transformed{3},img_transformed{4},img_transformed{5}, mosaicType);
 
 
 

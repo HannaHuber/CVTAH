@@ -26,12 +26,17 @@ function mosaic = blendImages(I1,I2,I3,I4,I5, mosaicType)
 mosaic = uint8(zeros([h,l,3]));
 m = uint8(zeros([h,l,4]));
 
+I1 = double(I1);
+I2 = double(I2);
+I3 = double(I3);
+I4 = double(I4);
+I5 = double(I5);
+
 %% feathering Algorithm
 if(strcmp(mosaicType,'feathering') == 1)
-    mosaic(:,:,1) = (double(I1(:,:,1)) .* double(I1(:,:,4)) + double(I2(:,:,1)) .* double(I2(:,:,4)) + double(I3(:,:,1)) .* double(I3(:,:,4)) + double(I4(:,:,1)) .* double(I4(:,:,4)) + double(I5(:,:,1)) .* double(I5(:,:,4))) ./ (double(I1(:,:,4)) + double(I2(:,:,4)) + double(I3(:,:,4)) + double(I4(:,:,4)) + double(I5(:,:,4)));
-    mosaic(:,:,2) = (double(I1(:,:,2)) .* double(I1(:,:,4)) + double(I2(:,:,2)) .* double(I2(:,:,4)) + double(I3(:,:,2)) .* double(I3(:,:,4)) + double(I4(:,:,2)) .* double(I4(:,:,4)) + double(I5(:,:,2)) .* double(I5(:,:,4))) ./ (double(I1(:,:,4)) + double(I2(:,:,4)) + double(I3(:,:,4)) + double(I4(:,:,4)) + double(I5(:,:,4)));
-    mosaic(:,:,3) = (double(I1(:,:,3)) .* double(I1(:,:,4)) + double(I2(:,:,3)) .* double(I2(:,:,4)) + double(I3(:,:,3)) .* double(I3(:,:,4)) + double(I4(:,:,3)) .* double(I4(:,:,4)) + double(I5(:,:,3)) .* double(I5(:,:,4))) ./ (double(I1(:,:,4)) + double(I2(:,:,4)) + double(I3(:,:,4)) + double(I4(:,:,4)) + double(I5(:,:,4)));
-
+    mosaic(:,:,1) = (I1(:,:,1) .* I1(:,:,4) + I2(:,:,1) .* I2(:,:,4) + I3(:,:,1) .* I3(:,:,4) + I4(:,:,1) .* I4(:,:,4) + I5(:,:,1) .* I5(:,:,4)) ./ (I1(:,:,4) + I2(:,:,4) + I3(:,:,4) + I4(:,:,4) + I5(:,:,4));
+    mosaic(:,:,2) = (I1(:,:,2) .* I1(:,:,4) + I2(:,:,2) .* I2(:,:,4) + I3(:,:,2) .* I3(:,:,4) + I4(:,:,2) .* I4(:,:,4) + I5(:,:,2) .* I5(:,:,4)) ./ (I1(:,:,4) + I2(:,:,4) + I3(:,:,4) + I4(:,:,4) + I5(:,:,4));
+    mosaic(:,:,3) = (I1(:,:,3) .* I1(:,:,4) + I2(:,:,3) .* I2(:,:,4) + I3(:,:,3) .* I3(:,:,4) + I4(:,:,3) .* I4(:,:,4) + I5(:,:,3) .* I5(:,:,4)) ./ (I1(:,:,4) + I2(:,:,4) + I3(:,:,4) + I4(:,:,4) + I5(:,:,4));
 %% non feathering Algorithm .. consecutive algorithm
 elseif(strcmp(mosaicType,'no_feathering') == 1)
     m(I1>0) = I1(I1 > 0);

@@ -3,7 +3,7 @@
 % Init
 folderTrain = './ass5_data/train';
 %folderTest = './ass5_data/test';
-folderTest = './ass5_data/owntest';
+folderTest = './ass5_data/test';
 
 num_clusters = 50;
 

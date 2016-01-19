@@ -25,7 +25,7 @@ subfolders = subfolders(3:end);
 output_args = zeros(1,max(group(:)));
 
 %% Extract SIFT features from all images from all subfolders
-for i = 1:size(subfolders, 1)
+for i = 1:8
     s = subfolders(i);
     % Get all images from subfolder
     images = dir(strcat(folder,'/',s.name));

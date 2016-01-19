@@ -1,9 +1,20 @@
-% calculates the best Homography
-% returns H: TFORM including best homography
-% returns I: a N x 4 Matrix where the first two columns are x,y coords of
-% inliers from img1 and column 3 and 4 are the x and y coords of the
-% inliers from img2
 function [H, I] = calcHomography(points_img1, points_img2, matching_indices)
+% calculates the best Homography
+% 
+% points_img1      ... 4 x M Matrix [X;Y;S;TH], where X,Y is the 
+%                      (fractional) center of the frame,
+%                      S is the scale and TH is the orientation (in radians). 
+% points_img2      ... 4 x M Matrix
+% matching_indices ... 2 x O Matrix with Matching points. 
+%                      [I;J], where I is the index of matching point in
+%                      points_img1 and J is the index of the matching point
+%                      in points_img2
+%
+% H                ... TFORM including best homography
+% I                ... N x 4 Matrix where the first two columns are x,y coords of
+%                      inliers from img1 and column 3 and 4 are the x and y coords of the
+%                      inliers from img2
+
 %  Randomly choose four matches, i.e. four points of the first image and the corresponding
 % four points of the second image. The function randsample might be
 % helpful.

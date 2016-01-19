@@ -12,7 +12,7 @@ function C = BuildVocabulary( folder, num_clusters )
 subfolders = dir(folder);
 % Remove ".." and "."
 subfolders = subfolders(3:end);
-subfolders(1) = []; % REMOVEEEEEEEE
+
 % SIFT features (100 per image, 100 images per subfolder, 8 subfolders)
 features = zeros(128,80000);
 %% Extract features from all images from all subfolders

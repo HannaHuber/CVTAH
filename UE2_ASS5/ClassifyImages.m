@@ -21,7 +21,7 @@ function [ output_args ] = ClassifyImages(folder,C,training,group)
 subfolders = dir(folder);
 % Remove ".." and "."
 subfolders = subfolders(3:end);
-subfolders(1) = []; % REMOVEEEEEEEE
+
 % counter of classified images
 output_args = zeros(max(group(:)),max(group(:)));
 

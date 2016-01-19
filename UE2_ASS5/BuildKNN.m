@@ -17,7 +17,7 @@ function [training, group] = BuildKNN(folder, C)
 subfolders = dir(folder);
 % Remove ".." and "."
 subfolders = subfolders(3:end);
-
+subfolders(1) = []; % REMOVEEEEEEEE
 num_clusters = size(C,2);
 % matrix for histogram values (800 images, num_clusters visual words)
 % number of occurrences of every word is counted

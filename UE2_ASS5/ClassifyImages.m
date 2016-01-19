@@ -12,17 +12,18 @@ function [ output_args ] = ClassifyImages(folder,C,training,group)
 %   group        ... A 1x800 vector indicating class labels of every image
 %
 %   Output:
-%   output_args  ... A 1x8 matrix containing amount of correctly
-%                    classified images
+%   output_args  ... A 8x8 matrix containing whose elements at position (i, j) 
+%                    indicate how often an image with class label i is 
+%                    classified to the class with label j.
 
 %% Init
 % Get all subfolders
 subfolders = dir(folder);
 % Remove ".." and "."
 subfolders = subfolders(3:end);
-
-% counter
-output_args = zeros(1,max(group(:)));
+subfolders(1) = []; % REMOVEEEEEEEE
+% counter of classified images
+output_args = zeros(max(group(:)),max(group(:)));
 
 %% Extract SIFT features from all images from all subfolders
 for i = 1:size(subfolders, 1)
@@ -44,12 +45,10 @@ for i = 1:size(subfolders, 1)
         nearest_neighbours = knnsearch(C',D');
         % count number of occurences of each class
         bincounts = histc(nearest_neighbours, 1:50);  
-        % check to which histogram belongs this image
+        % classified group
         classifiedGroup = knnclassify(bincounts', training, group);
         
-        if(classifiedGroup == i)
-            output_args(i) = output_args(i) + 1;
-        end
+        output_args(i,classifiedGroup) = output_args(i,classifiedGroup) + 1;
     end
 end
 

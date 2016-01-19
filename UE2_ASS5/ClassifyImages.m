@@ -20,18 +20,17 @@ function [ output_args ] = ClassifyImages(folder,C,training,group)
 subfolders = dir(folder);
 % Remove ".." and "."
 subfolders = subfolders(3:end);
-subfolders(1) = []; % REMOVEEEEEEEE
 
 % counter
 output_args = zeros(1,max(group(:)));
 
 %% Extract SIFT features from all images from all subfolders
-for i = 1:8
+for i = 1:size(subfolders, 1)
     s = subfolders(i);
     % Get all images from subfolder
     images = dir(strcat(folder,'/',s.name));
     images = images(3:end);
-    for j = 1:100
+    for j = 1:size(images, 1)
         % Read and convert image
         img = imread(strcat(folder,'/',s.name, '/',images(j).name));
         if (size(img,3)>1)
@@ -41,14 +40,10 @@ for i = 1:8
         % Grid size for feature extraction (dense)
         step = 2;
         [~, D] = vl_dsift(img_single, 'step', step, 'fast');
-        % build histogram for this image
         % look for nearest neighbour
         nearest_neighbours = knnsearch(C',D');
         % count number of occurences of each class
-        bincounts = histc(nearest_neighbours, 1:50);
-        % add to histogram matrix
-        % histogram((i-1)*100 + j, :) = bincounts'; 
-        
+        bincounts = histc(nearest_neighbours, 1:50);  
         % check to which histogram belongs this image
         classifiedGroup = knnclassify(bincounts', training, group);
         

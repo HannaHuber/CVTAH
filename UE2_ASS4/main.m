@@ -20,7 +20,7 @@ impath(5) = cellstr('ass4_data/campus5.jpg');
 
 %% C - Image Stitching
 % You can choose between feathering and no_feathering
-mosaic = stitchImages(impath, 'no_feathering');
+mosaic = stitchImages(impath, 'feathering');
 % Visualize stitched image
 imshow(mosaic);
 

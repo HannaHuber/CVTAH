@@ -1,5 +1,3 @@
-% TODO: Andreas
-
 function [training, group] = BuildKNN(folder, C)
 %BUILDKNN Summary of this function goes here
 %   Input:
@@ -19,6 +17,8 @@ function [training, group] = BuildKNN(folder, C)
 subfolders = dir(folder);
 % Remove ".." and "."
 subfolders = subfolders(3:end);
+subfolders(1) = []; % REMOVEEEEEEEE
+
 % matrix for histogram values
 histogram = zeros(800, 50);
 
